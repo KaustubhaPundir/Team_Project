@@ -1,14 +1,19 @@
 const {Team} = require('../models/team');
+
 exports.create = async (req, res) => {
-    try {
-        console.log(req);
-        const team = new Team(req.query);
-        await team.save();
-        res.json(team);
-    } catch (error) {
-        res.status(400).json({ error: error.message });
-    }
-}
+  try {
+    const data = req.body;
+    const team = await Team.create(data);
+    res.status(201).json({ message: "Team created successfully", team });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ 
+        error: "Error creating team",
+         details: error.message });
+  }
+};
+
 exports.read = async (req, res) => {
     const teams = await Team.find().populate('players');
     res.json(teams);
