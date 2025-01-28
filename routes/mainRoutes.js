@@ -5,6 +5,8 @@ const playerController = require('../controllers/playerController')
 const matchController = require('../controllers/matchController')
 const contestController = require("../controllers/contestController")
 const betController = require("../controllers/betController")
+const { registerUser, loginUser } = require('../middleware/authMiddleware');
+
 
 router.post('/teams/create', teamController.create);
 router.get('/teams/read', teamController.read);
@@ -35,6 +37,7 @@ router.put("/bet/update/:id", betController.updateBet);
 router.delete("/bet/delete/:id", betController.deleteBet);
 router.get("/bet/history/:userId", betController.getBetHistory);
 
-
+router.post('/register', registerUser);
+router.post('/login', loginUser);
 
 module.exports = router
