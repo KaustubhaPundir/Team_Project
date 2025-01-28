@@ -3,6 +3,7 @@ const router = express.Router();
 const teamController = require('../controllers/teamController')
 const playerController = require('../controllers/playerController')
 const matchController =require('../controllers/matchController')
+const contestController =require("../controllers/contestController")
 
 router.post('/teams/create', teamController.create);
 router.get('/teams/read', teamController.read);
@@ -20,6 +21,11 @@ router.get('/matches/:id', matchController.getMatchDetails);
 router.put('/matches/update/:id', matchController.updateMatch); 
 router.delete('/matches/delete/:id', matchController.deleteMatch); 
 
+router.post("/cont/create",contestController.createContest);
+router.get("/cont/getall", contestController.getAllContests);
+router.get("/cont/:id", contestController.getContestById);
+router.put("/cont/update/:id", contestController.updateContest);
+router.delete("/cont/delete/:id", contestController.deleteContest);
 
 
 
