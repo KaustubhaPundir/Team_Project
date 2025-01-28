@@ -2,8 +2,9 @@ const express = require('express');
 const router = express.Router();
 const teamController = require('../controllers/teamController')
 const playerController = require('../controllers/playerController')
-const matchController =require('../controllers/matchController')
-const contestController =require("../controllers/contestController")
+const matchController = require('../controllers/matchController')
+const contestController = require("../controllers/contestController")
+const betController = require("../controllers/betController")
 
 router.post('/teams/create', teamController.create);
 router.get('/teams/read', teamController.read);
@@ -26,6 +27,13 @@ router.get("/cont/getall", contestController.getAllContests);
 router.get("/cont/:id", contestController.getContestById);
 router.put("/cont/update/:id", contestController.updateContest);
 router.delete("/cont/delete/:id", contestController.deleteContest);
+
+router.post("/bet/create", betController.createBet);
+router.get("/bet/getall", betController.getAllBets);
+router.get("/bet/:id", betController.getBetById);
+router.put("/bet/update/:id", betController.updateBet);
+router.delete("/bet/delete/:id", betController.deleteBet);
+router.get("/bet/history/:userId", betController.getBetHistory);
 
 
 
